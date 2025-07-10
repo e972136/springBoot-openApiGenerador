@@ -1,0 +1,14 @@
+##### token solicitud
+get http://localhost:8080/api/users
+
+
+
+
+##### token solicitud
+post http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+     "name":"patito",
+     "age":"45"
+}

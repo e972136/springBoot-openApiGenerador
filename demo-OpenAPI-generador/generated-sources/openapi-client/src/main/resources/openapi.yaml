@@ -1,0 +1,61 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- description: Generated server url
+  url: http://localhost:8080
+paths:
+  /api/users:
+    get:
+      operationId: getUsers
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: OK
+      tags:
+      - user-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: user-controller
+    post:
+      operationId: addUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: OK
+      tags:
+      - user-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: user-controller
+components:
+  schemas:
+    User:
+      example:
+        name: name
+        age: 0
+      properties:
+        name:
+          type: string
+        age:
+          format: int32
+          type: integer
+      type: object
