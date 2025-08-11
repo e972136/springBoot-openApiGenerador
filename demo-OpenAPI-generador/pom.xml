@@ -30,20 +30,10 @@
 		<java.version>19</java.version>
 	</properties>
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 
 
@@ -106,6 +96,8 @@
 			<version>2.0.1.Final</version>
 		</dependency>
 
+
+
 	</dependencies>
 
 	<build>
@@ -113,7 +105,7 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>7.5.0</version>
+				<version>7.9.0</version>
 				<executions>
 					<execution>
 						<id>generate-resttemplate-client</id>
@@ -123,9 +115,12 @@
 						<configuration>
 							<inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<output>${project.basedir}/generated-sources/openapi-client</output>
+							<modelPackage>com.davivienda.model</modelPackage>
+							<apiPackage>com.davivienda.api</apiPackage>
+							<output>${project.basedir}/gen-src</output>
 							<configOptions>
-								<dateLibrary>java8</dateLibrary>
+								<library>spring-cloud</library>
+<!--								<dateLibrary>java8</dateLibrary>-->
 								<useRuntimeException>true</useRuntimeException>
 							</configOptions>
 						</configuration>

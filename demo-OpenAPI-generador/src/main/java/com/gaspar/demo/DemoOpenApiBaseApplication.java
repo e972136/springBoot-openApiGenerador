@@ -10,4 +10,8 @@ public class DemoOpenApiBaseApplication {
 		SpringApplication.run(DemoOpenApiBaseApplication.class, args);
 	}
 
+	/**
+	 * para poder obtener los codigos,
+	 * Desde la consola ejecutar: mvn clean generate-sources
+	 */
 }

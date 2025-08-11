@@ -1,4 +1,3 @@
-
 openapi: 3.0.1
 info:
   version: 2.1.0
@@ -8,7 +7,7 @@ paths:
   '/idi/v1/provision/{correlation_id}':
     post:
       tags:
-        - IDI
+      - IDI
       x-proxy-name: Push Provision
       x-group-name: IDI
       x-child-product-name: Issuer Tokenization
@@ -35,27 +34,6 @@ paths:
             minLength: 32
             maxLength: 256
             example: 8A36131881F44DE494906A0ABC77CCE2
-        - name: Signature
-          in: header
-          description: HMAC signature used to verify the authenticity and integrity
-            of data transmitted
-          required: false
-          schema:
-            type: string
-          example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
-        - name: Authorization
-          in: header
-          description: Authorization Bearer Token
-          required: true
-          schema:
-            type: string
-          example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-        - name: apikey
-          in: header
-          description: Unique identifier used to authorize the API request
-          required: true
-          schema:
-            type: string
       requestBody:
         content:
           application/json:
@@ -105,124 +83,7 @@ paths:
           description: Method not allowed
         '503':
           description: Server unavailable
-  /idi/v1/token/generate:
-    post:
-      tags:
-        - IDI
-      x-proxy-name: Token generation
-      x-group-name: IDI
-      x-child-product-name: Issuer Tokenization
-      summary: Generate access token
-      security:
-        - basicAuth: []
-      description: Generates an access token using the client credentials flow.
-      parameters:
-        - name: Authorization
-          in: header
-          description: Authorization Basic Token
-          required: true
-          schema:
-            type: string
-          example: Basic vAbsh53JHFSTR23esEtrUI864tt
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                grant_type:
-                  type: string
-                  example: client_credentials
-              required:
-                - grant_type
-      responses:
-        '200':
-          description: Token successfully generated
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  api_product_list:
-                    type: string
-                  api_product_list_json:
-                    type: array
-                    items:
-                      type: string
-                  organization_name:
-                    type: string
-                  token_type:
-                    type: string
-                  issued_at:
-                    type: string
-                  client_id:
-                    type: string
-                  access_token:
-                    type: string
-                  application_name:
-                    type: string
-                  scope:
-                    type: string
-                  expires_in:
-                    type: string
-                  status:
-                    type: string
-        '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: object
-                    properties:
-                      code:
-                        type: string
-                      message:
-                        type: string
-                      additionalInfo:
-                        type: string
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: object
-                    properties:
-                      code:
-                        type: string
-                      message:
-                        type: string
-                      additionalInfo:
-                        type: string
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: object
-                    properties:
-                      code:
-                        type: string
-                      message:
-                        type: string
-                      additionalInfo:
-                        type: string
-security:
-  - basicAuth: []
 components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
   schemas:
     PushProvisionRequest:
       type: object
